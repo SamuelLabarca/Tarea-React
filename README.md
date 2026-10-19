@@ -25,23 +25,25 @@ A partir de M4 hace falta el token de TMDB:
 
 ## Cómo está armado
 
-La interfaz ya viene hecha: Header, tarjetas, filtros, paginador, estados vacíos, la ficha de detalle. En clase escribimos **solo la parte de React**. Busca los comentarios `TODO M1`, `TODO M2`… en el código.
+La interfaz ya viene hecha: Header, tarjetas, filtros, paginador, estados vacíos, la ficha de detalle. En clase escribimos **solo la parte de React**.
+
+`main` ya tiene integrada la solución completa de **M1 a M8** (router, Layout, detalle de película, hooks propios y context). Para seguir la clase hito a hito, usa los tags de abajo: cada uno es el estado del código al terminar esa clase.
 
 ```
 src/
-├── app/router.tsx              M8
+├── app/router.tsx              M8 · rutas de la app
 ├── core/
 │   ├── api/tmdb.ts             instancia de Axios (lista)
 │   ├── config/tmdb.ts          URLs, idioma, imágenes (lista)
 │   ├── favoritas/              M7 · Context
-│   └── layout/                 Header, NoEncontrada (+ Layout en M8)
+│   └── layout/                 Header, Layout (M8), NoEncontrada
 ├── features/
 │   ├── peliculas/
 │   │   ├── components/         tarjetas, grilla, filtros, ficha
 │   │   ├── data/               películas de ejemplo (M1 a M3)
 │   │   ├── hooks/              M6 · usePeliculas
 │   │   ├── models/             interfaces de TMDB
-│   │   ├── pages/              CatalogoPeliculas (+ DetallePelicula en M8)
+│   │   ├── pages/              CatalogoPeliculas, DetallePelicula (M8)
 │   │   └── services/           peticiones a TMDB (listo)
 │   └── favoritas/pages/        MisFavoritas
 └── shared/
@@ -50,11 +52,19 @@ src/
     └── models/
 ```
 
+## Rutas
+
+| Ruta | Qué muestra |
+|---|---|
+| `/peliculas` | Catálogo con búsqueda, género, orden y paginación |
+| `/peliculas/:id` | Ficha de la película |
+| `/favoritas` | Las que marcaste con el corazón |
+| `*` | 404 · NoEncontrada |
+
 ## Hitos
 
 | Tag | Qué se hace |
 |---|---|
-| `m0-esqueleto` | Punto de partida (rama `main`) |
 | `m1-favoritas` | useState, eventos y levantar el estado |
 | `m2-vistas` | Renderizado condicional y children |
 | `m3-busqueda` | Input controlado y dato derivado |
@@ -79,7 +89,11 @@ Para ver qué cambió entre dos hitos:
 git diff m3-busqueda m4-api -- src
 ```
 
-Para mirar la solución completa sin tocar tu trabajo: `git switch soluciones` (y `git switch main` para volver).
+Los tags son la solución completa de cada hito. Para mirar una sin tocar tu trabajo:
+
+```bash
+git switch --detach m8-router   # y vuelve con git switch main
+```
 
 ## Scripts
 
