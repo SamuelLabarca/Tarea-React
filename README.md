@@ -7,8 +7,8 @@ React 19 + TypeScript + Vite, Tailwind 4, componentes de [shadcn/ui](https://ui.
 ## Cómo arrancar
 
 ```bash
-git clone https://github.com/Ronjrs97/clase-react-2026.git
-cd clase-react-2026
+git clone https://github.com/SamuelLabarca/Tarea-React.git
+cd Tarea-React
 npm install
 npm run dev        # http://localhost:5173
 ```
@@ -27,11 +27,11 @@ A partir de M4 hace falta el token de TMDB:
 
 La interfaz ya viene hecha: Header, tarjetas, filtros, paginador, estados vacíos, la ficha de detalle. En clase escribimos **solo la parte de React**.
 
-`main` ya tiene integrada la solución completa de **M1 a M8** (router, Layout, detalle de película, hooks propios y context). Para seguir la clase hito a hito, usa los tags de abajo: cada uno es el estado del código al terminar esa clase.
+`main` tiene integrada la solución completa de **M1 a M8** más la feature de detalle de personas.
 
 ```
 src/
-├── app/router.tsx              M8 · rutas de la app
+├── app/router.tsx              rutas de la app (catálogo, detalle película, detalle persona, favoritas)
 ├── core/
 │   ├── api/tmdb.ts             instancia de Axios (lista)
 │   ├── config/tmdb.ts          URLs, idioma, imágenes (lista)
@@ -39,12 +39,17 @@ src/
 │   └── layout/                 Header, Layout (M8), NoEncontrada
 ├── features/
 │   ├── peliculas/
-│   │   ├── components/         tarjetas, grilla, filtros, ficha
+│   │   ├── components/         tarjetas, grilla, filtros, ficha, reparto con enlaces
 │   │   ├── data/               películas de ejemplo (M1 a M3)
 │   │   ├── hooks/              M6 · usePeliculas
 │   │   ├── models/             interfaces de TMDB
 │   │   ├── pages/              CatalogoPeliculas, DetallePelicula (M8)
 │   │   └── services/           peticiones a TMDB (listo)
+│   ├── personas/               feature personas: detalle de actor, bio y conocido por
+│   │   ├── hooks/              usePersona
+│   │   ├── models/             interface Persona
+│   │   ├── pages/              DetallePersona
+│   │   └── services/           obtenerPersona (TMDB)
 │   └── favoritas/pages/        MisFavoritas
 └── shared/
     ├── components/             EstadoVacio, MensajeError, Paginador, EsqueletoGrilla
@@ -58,6 +63,7 @@ src/
 |---|---|
 | `/peliculas` | Catálogo con búsqueda, género, orden y paginación |
 | `/peliculas/:id` | Ficha de la película |
+| `/personas/:id` | Ficha de la persona (bio, foto, datos y conocido por) |
 | `/favoritas` | Las que marcaste con el corazón |
 | `*` | 404 · NoEncontrada |
 
